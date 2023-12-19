@@ -105,20 +105,24 @@ const VoiceRSS = {
   },
 };
 
-// const test = function () {
-//   VoiceRSS.speech({
-//     key: "fbd0f35e889d429ca0c04ffa2bf5e05d",
-//     src: "Hello, world!",
-//     hl: "en-us",
-//     v: "Linda",
-//     r: 0,
-//     c: "mp3",
-//     f: "44khz_16bit_stereo",
-//     ssml: false,
-//   });
-// };
+// Disable / Enable Button
+const toggleButton = function () {
+  button.disabled = !button.disabled;
+};
 
-// test();
+// Passing Joke to VoiceRSS API
+const tellMe = function (joke) {
+  VoiceRSS.speech({
+    key: "fbd0f35e889d429ca0c04ffa2bf5e05d",
+    src: joke,
+    hl: "en-us",
+    v: "Linda",
+    r: 0,
+    c: "mp3",
+    f: "44khz_16bit_stereo",
+    ssml: false,
+  });
+};
 
 // Get Jokes from API
 const getJokes = async function () {
@@ -132,11 +136,16 @@ const getJokes = async function () {
     } else {
       joke = data.joke;
     }
-    console.log(joke);
+    // Text-to-Speech
+    tellMe(joke);
+    //Diasble Button
+    toggleButton();
   } catch (error) {
     // Catch Errors Here
     console.log("whoops", error);
   }
 };
 
-getJokes();
+// Event Listeners
+btn.addEventListener("click", getJokes);
+audioElement.addEventListener("ended", toggleButton);
