@@ -105,17 +105,38 @@ const VoiceRSS = {
   },
 };
 
-const test = function () {
-  VoiceRSS.speech({
-    key: "fbd0f35e889d429ca0c04ffa2bf5e05d",
-    src: "Hello, world!",
-    hl: "en-us",
-    v: "Linda",
-    r: 0,
-    c: "mp3",
-    f: "44khz_16bit_stereo",
-    ssml: false,
-  });
+// const test = function () {
+//   VoiceRSS.speech({
+//     key: "fbd0f35e889d429ca0c04ffa2bf5e05d",
+//     src: "Hello, world!",
+//     hl: "en-us",
+//     v: "Linda",
+//     r: 0,
+//     c: "mp3",
+//     f: "44khz_16bit_stereo",
+//     ssml: false,
+//   });
+// };
+
+// test();
+
+// Get Jokes from API
+const getJokes = async function () {
+  let joke = "";
+  const apiUrl = "https://v2.jokeapi.dev/joke/Miscellaneous,Dark";
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    if (data.setup) {
+      joke = `${data.setup} ... ${data.delivery}`;
+    } else {
+      joke = data.joke;
+    }
+    console.log(joke);
+  } catch (error) {
+    // Catch Errors Here
+    console.log("whoops", error);
+  }
 };
 
-test();
+getJokes();
