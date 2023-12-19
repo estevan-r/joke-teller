@@ -1,4 +1,4 @@
-const btn = document.getElementById("button");
+const btn = document.getElementById("btn");
 const audioElement = document.getElementById("audio");
 
 // VoiceRSS Javascript SDK
@@ -107,7 +107,7 @@ const VoiceRSS = {
 
 // Disable / Enable Button
 const toggleButton = function () {
-  button.disabled = !button.disabled;
+  btn.disabled = !btn.disabled;
 };
 
 // Passing Joke to VoiceRSS API
